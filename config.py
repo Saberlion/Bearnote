@@ -27,7 +27,7 @@ MONGODB_DB = os.environ.get('MONGODB_DB', 'bearnote')
 MONGODB_HOST = os.environ.get('MONGODB_HOST', '127.0.0.1')
 MONGODB_PORT = os.environ.get('MONGODB_PORT', 27017)
 MONGODB_USERNAME = os.environ.get('MONGODB_USERNAME', '')
-MONGODB_PASSWORD = os.environ.get('MONGODB_PASSWORD', '')
+MONGODB_PASSWORD = os.environ.get('MONGODB_PASSWORD', 'u2p6BFOKCtXmV8wo')
 
 # Unkown What it is.
 THREADS_PER_PAGE = 8

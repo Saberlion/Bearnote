@@ -1,3 +1,4 @@
+uwsgi
 blinker==1.4
 ecdsa==0.13
 Fabric==1.10.2

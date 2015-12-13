@@ -8,7 +8,6 @@ RUN apt-get -y install nginx  sed python-pip python-dev uwsgi-plugin-python supe
 
 ADD . /app
 WORKDIR /app
-RUN apt-get update
 RUN apt-get -y install mongodb
 RUN pip install -r requirements.txt --upgrade
 EXPOSE 5000

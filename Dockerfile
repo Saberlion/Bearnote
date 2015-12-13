@@ -13,7 +13,23 @@ RUN apt-get -y install mongodb
 RUN pip install -r requirements.txt --upgrade
 EXPOSE 5000
 ENV MODE DEVELOPMENT
-COPY supervisor.conf /etc/supervisor/conf.d/supervisord.conf
+
+RUN mkdir -p /var/log/nginx/app
+RUN mkdir -p /var/log/uwsgi/app/
+
+
+RUN rm /etc/nginx/sites-enabled/default
+COPY flask.conf /etc/nginx/sites-available/
+RUN ln -s /etc/nginx/sites-available/flask.conf /etc/nginx/sites-enabled/flask.conf
+COPY uwsgi.ini /var/www/app/
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+
+
+RUN mkdir -p /var/log/supervisor
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+copy app /var/www/app
+
 #CMD nohup "gunicorn -w 2 App:app -b 0.0.0.0:80 &"
 #CMD ["nohup", "gunicorn -w 2 App:app -b 0.0.0.0:80 &"]
 #CMD ["gunicorn","-w 2","run:app","-b 0.0.0.0:80"]

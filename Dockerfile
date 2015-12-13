@@ -1,4 +1,11 @@
-FROM python:2.7.10
+FROM ubuntu:14.04
+MAINTAINER saberlion <admin@saberlion.info>
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update
+RUN apt-get -y install nginx  sed python-pip python-dev uwsgi-plugin-python supervisor
+
 ADD . /app
 WORKDIR /app
 RUN apt-get update

@@ -16,7 +16,7 @@ ENV MODE DEVELOPMENT
 
 RUN mkdir -p /var/log/nginx/app
 RUN mkdir -p /var/log/uwsgi/app/
-
+RUN mkdir -p /data/db/
 
 RUN rm /etc/nginx/sites-enabled/default
 COPY flask.conf /etc/nginx/sites-available/

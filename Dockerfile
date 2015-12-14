@@ -4,7 +4,7 @@ MAINTAINER saberlion <admin@saberlion.info>
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
-RUN apt-get -y install nginx  sed python-pip python-dev uwsgi-plugin-python supervisor
+RUN apt-get -y install nginx  sed python-pip python-dev  supervisor
 
 RUN apt-get -y install mongodb
 RUN pip install -r requirements.txt --upgrade
@@ -25,7 +25,7 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 RUN mkdir -p /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-copy . /var/www/app
+copy . /var/www/
 EXPOSE 80
 #CMD nohup "gunicorn -w 2 App:app -b 0.0.0.0:80 &"
 #CMD ["nohup", "gunicorn -w 2 App:app -b 0.0.0.0:80 &"]

@@ -2,17 +2,16 @@ FROM ubuntu:14.04
 MAINTAINER saberlion <admin@saberlion.info>
 
 ENV DEBIAN_FRONTEND noninteractive
-
+copy . /var/www/
 RUN apt-get update
 RUN apt-get -y install nginx  sed python-pip python-dev  supervisor
 
 RUN apt-get -y install mongodb
-RUN pip install -r requirements.txt --upgrade
+RUN pip install -r /var/www/requirements.txt
 
 ENV MODE DEVELOPMENT
 
 RUN mkdir -p /var/log/nginx/app
-RUN mkdir -p /var/log/uwsgi/app/
 RUN mkdir -p /data/db/
 
 RUN rm /etc/nginx/sites-enabled/default
@@ -25,7 +24,6 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 RUN mkdir -p /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-copy . /var/www/
 EXPOSE 80
 #CMD nohup "gunicorn -w 2 App:app -b 0.0.0.0:80 &"
 #CMD ["nohup", "gunicorn -w 2 App:app -b 0.0.0.0:80 &"]

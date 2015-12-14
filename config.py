@@ -7,7 +7,7 @@ _basedir = os.path.abspath(os.path.dirname(__file__))
 
 DEBUG = True
 
-ADMINS = frozenset(['youremail@yourdomain.com'])
+ADMINS = frozenset(['fxre@qq.com'])
 CSRF_ENABLED = True
 SECRET_KEY = '123456'
 
